@@ -16,7 +16,7 @@
         align-items: center;
 
         background-color: $white;
-        min-width: 200px;
+        width: 210px;
         min-height: 280px;
 
         border-radius: 10px;
@@ -44,15 +44,15 @@
                 h1 {
                     color: $primary;
                     font-size: 18px;
-    
+
                     margin-block-start: 0;
                     margin-block-end: 0;
                 }
-    
+
                 h2 {
                     color: $dark;
                     font-size: 14px;
-    
+
                     margin-block-start: 0;
                     margin-block-end: 0;
                 }
@@ -73,5 +73,11 @@
             width: 80%;
             padding: 15px 0;
         }
+    }
+}
+
+@media (max-width: 1190px) {
+    .container {
+        justify-content: center;
     }
 }

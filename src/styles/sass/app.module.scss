@@ -1,7 +1,7 @@
-@import 'variables';
+@import "variables";
 
 .wrapper {
-    background-color: $primary;
+    background-image: linear-gradient($primary 50%, $primary, $cold-gray 50%);
     width: 100%;
 
     display: flex;
@@ -10,22 +10,22 @@
     align-items: center;
     row-gap: 3rem;
 
-    padding-top: 8rem;
+    padding-top: 4rem;
 
     overflow: hidden;
 
     &::before {
         background-color: $cold-gray;
         width: 150%;
-        height: 70vh;
-        content: '';
+        height: 60%;
+        content: "";
 
         border-top-left-radius: 50%;
         border-top-right-radius: 50%;
 
         position: absolute;
         z-index: 0;
-        top: 50%;
+        top: 40%;
     }
 
     .content {
@@ -33,8 +33,9 @@
         width: 100%;
         max-width: 1200px;
 
-        box-shadow: 0 2px 8px $alpha-dark;
         border-radius: 15px;
+
+        padding: 0 15px 35px 15px;
 
         position: relative;
         z-index: 10;
@@ -64,14 +65,14 @@
 
         .page {
             background-color: $white;
-            min-height: 400px;
+            min-height: 800px;
 
             border-top-right-radius: 80px;
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
-            
+
             padding: 0 25px 25px 25px;
-            margin: 0 15px 15px 15px;
+            box-shadow: 0 2px 8px $alpha-dark;
 
             .header {
                 display: flex;
@@ -86,6 +87,88 @@
                     color: $dark;
                     font-size: 26px;
                     font-weight: 600;
+
+                    br {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        background-image: none;
+        background-color: $cold-gray;
+        padding-top: 2rem;
+
+        &::before {
+            background-color: $primary;
+            width: 100%;
+            height: 350px;
+            content: "";
+
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 10%;
+            border-bottom-right-radius: 10%;
+
+            top: 0;
+        }
+
+        .content {
+            .titles {
+                padding: 20px 0;
+
+                h1 {
+                    font-size: 22px;
+                }
+
+                h2 {
+                    font-size: 16px;
+                }
+            }
+
+            .page {
+                .header {
+                    padding: 30px 25px 25px 0;
+
+                    h1 {
+                        font-size: 22px;
+
+                        br {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 476px) {
+    .wrapper {
+        .content {
+            .titles {
+                h1 {
+                    font-size: 18px;
+                }
+
+                h2 {
+                    font-size: 14px;
+                }
+            }
+
+            .page {
+                .header {
+                    h1 {
+                        font-size: 16px;
+
+                        br {
+                            display: block;
+                        }
+                    }
                 }
             }
         }

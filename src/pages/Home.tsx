@@ -12,7 +12,7 @@ export function Home() {
             <div className={appStyles.header}>
                 <h1>Lista de usuários</h1>
 
-                <Link className={`${buttonStyles.buttonCircle} ${buttonStyles.buttonPrimary}`} to="todo">
+                <Link className={`${buttonStyles.buttonCircle} ${buttonStyles.buttonPrimary}`} to="#">
                     <FiRotateCw size="20" strokeWidth="2.8" />
                 </Link>
             </div>

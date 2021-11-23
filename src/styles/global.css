@@ -25,3 +25,138 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: #babac0;
     border: 5px solid #e6e8ec;
 }
+
+/* Style copied - https://codepen.io/havardob/pen/ZJJoQL */
+
+label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: block;
+  margin: 0.5em;
+}
+
+label > input {
+  display: none;
+}
+
+label span {
+  color: #6a759b;
+}
+
+label i {
+  display: inline-block;
+  width: 64px;
+  height: 40px;
+  border-radius: 20px;
+  vertical-align: middle;
+  transition: 0.25s 0.09s;
+  position: relative;
+  right: 10px;
+  background: #deeff7;
+}
+
+label i:after {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.4);
+  transition: 0.15s;
+}
+
+label > input:checked + i {
+  background: #1094fb;
+}
+
+label > input:checked + i + span {
+  color: #29316b;
+}
+
+label > input:checked + i:after {
+  transform: translateX(25px);
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 30px;
+
+  width: 100%;
+
+  list-style-type: none;
+}
+
+.pagination li a {
+  display: flex;
+  align-items: center;
+
+  background-color: #0575f3;
+  height: 32px;
+  min-width: 32px;
+
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+
+  border-radius: 16px;
+
+  margin: auto 6px;
+  padding: 0 12px;
+
+  box-sizing: border-box;
+  box-shadow: 0 0 25px rgba(5, 117, 243, 0.6);
+
+  outline: none;
+
+  filter: brightness(1);
+  transition: all 400ms;
+}
+
+.pagination li.dots:hover a {
+  cursor: default;
+}
+
+.pagination li:hover a {
+  filter: brightness(1.2);
+  cursor: pointer;
+}
+
+.pagination li.disabled a, .pagination li.selected a {
+  filter: brightness(1);
+  background-color: #EEEEEE;
+  color: #555555;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+    label > span {
+        display: none;
+    }
+
+    label > input:checked + i:after {
+        transform: translateX(20px);
+    }
+
+    label i {
+        width: 45px;
+        height: 25px;
+        right: 0;
+    }
+
+    label i:after {
+        width: 15px;
+        height: 15px;
+        top: 5px;
+        left: 5px;
+    }
+}
