@@ -20,19 +20,22 @@ export function TaskList(props: TaskListProps) {
 
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
+    const [itemChange, setItemChange] = useState(0);
 
     const { userID } = props;
     const itemsPerPage = 10;
 
 
     useEffect(() => {
-        if (setListTask.length > 0) {
+        console.log('Lista atualizada: ', listTask);
+
+        if (listTask.length > 0) {
             const endOffset = itemOffset + itemsPerPage;
 
             setCurrentItems(listTask.slice(itemOffset, endOffset));
             setPageCount(Math.ceil(listTask.length / itemsPerPage));
         }
-    }, [itemOffset, itemsPerPage]);
+    }, [itemOffset, itemsPerPage, itemChange]);
 
     useEffect(() => {
         setLoading(true);
@@ -57,6 +60,32 @@ export function TaskList(props: TaskListProps) {
         setItemOffset(newOffset);
     };
 
+    const handleTaskChange = (task: ITaskData) => {
+
+        let dataChangeTask = JSON.stringify({
+            completed: !task.completed
+        });
+
+        api.patch<ITaskData>(`todos/${task.id}`, dataChangeTask, {
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        }).then(response => {
+            let data = response.data;
+
+            listTask.find((element, key) => {
+                if (element.id === task.id) {
+                    listTask[key] = data;
+                }
+            });
+
+            setListTask(listTask);
+            setItemChange(itemChange+1);
+
+            console.log('Item alterado: ', data);
+        }).catch((err) => {
+            console.error("Erro: " + err);
+        });
+    };
+
     return (
         <div className={styles.container}>
             {loading ?
@@ -71,11 +100,11 @@ export function TaskList(props: TaskListProps) {
                             {currentItems &&
                                 currentItems.map((task, key) => {
                                     return (
-                                        <div className={styles.item} key={key}>
+                                        <div className={styles.item} key={task.id}>
                                             <h1>{task.title}</h1>
 
                                             <label>
-                                                <input type="checkbox" />
+                                                <input type="checkbox" name={`task-${task.id}`} onChange={() => handleTaskChange(task)} defaultChecked={Boolean(task.completed)} />
                                                 <i></i>
                                             </label>
                                         </div>
